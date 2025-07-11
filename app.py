@@ -4,10 +4,17 @@ import os
 import json
 import hashlib
 
+app = Flask(__name__)
+
+# GitHub API base
+GITHUB_API = "https://api.github.com/repos"
+
+# Cache config
 CACHE_DIR = "cache"
 os.makedirs(CACHE_DIR, exist_ok=True)
 
 def get_cache_path(repo_url):
+    """Return cache file path based on hash of the repo URL"""
     hash_name = hashlib.md5(repo_url.encode()).hexdigest()
     return os.path.join(CACHE_DIR, f"{hash_name}.json")
 
@@ -22,11 +29,6 @@ def save_to_cache(repo_url, data):
     path = get_cache_path(repo_url)
     with open(path, "w", encoding="utf-8") as f:
         json.dump(data, f, indent=2)
-
-
-app = Flask(__name__)
-
-GITHUB_API = "https://api.github.com/repos"
 
 def fetch_files_from_github(user, repo, path=""):
     url = f"{GITHUB_API}/{user}/{repo}/contents/{path}"
@@ -56,7 +58,7 @@ def fetch_repo():
     if not repo_url or "github.com" not in repo_url:
         return jsonify({"error": "Invalid GitHub URL"}), 400
 
-
+    # ✅ check cache
     cached = load_from_cache(repo_url)
     if cached:
         print(f"✅ Loaded from cache: {repo_url}")
@@ -73,12 +75,11 @@ def fetch_repo():
             return jsonify({"error": msg}), code
 
         result = {"files": files_data}
-        save_to_cache(repo_url, result) 
+        save_to_cache(repo_url, result)
         return jsonify(result), 200
 
     except Exception as e:
         return jsonify({"error": str(e)}), 500
-
 
 if __name__ == "__main__":
     app.run(debug=True, port=5555)
