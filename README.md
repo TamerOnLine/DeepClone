@@ -119,7 +119,7 @@ Feel free to explore and build upon it!
 A dedicated software engineer and educator with a focus on building multilingual, modular, and open-source applications using Python, Flask, and PostgreSQL.
 
 🔹 Founder of **Flask University** – an initiative to create real-world, open-source Flask projects  
-🔹 Creator of [@mystrotamer](https://www.youtube.com/@mystrotamer) – a YouTube channel sharing tech, tutorials, and Pi Network insights  
+🔹 Creator of [@TamerOnPi](https://www.youtube.com/@TamerOnPi) – a YouTube channel sharing tech, tutorials, and Pi Network insights  
 🔹 Passionate about helping developers learn by building, one milestone at a time
 
 Connect or contribute:
