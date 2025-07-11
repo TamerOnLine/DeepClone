@@ -10,7 +10,7 @@ app = Flask(__name__)
 GITHUB_API = "https://api.github.com/repos"
 
 # Cache config
-CACHE_DIR = "cache"
+CACHE_DIR = ".cache"
 os.makedirs(CACHE_DIR, exist_ok=True)
 
 def get_cache_path(repo_url):
