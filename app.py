@@ -56,7 +56,7 @@ def fetch_repo():
     if not repo_url or "github.com" not in repo_url:
         return jsonify({"error": "Invalid GitHub URL"}), 400
 
-    # ✅ تحقق من الكاش أولاً
+
     cached = load_from_cache(repo_url)
     if cached:
         print(f"✅ Loaded from cache: {repo_url}")
@@ -73,7 +73,7 @@ def fetch_repo():
             return jsonify({"error": msg}), code
 
         result = {"files": files_data}
-        save_to_cache(repo_url, result)  # ✅ احفظ النتيجة في الكاش
+        save_to_cache(repo_url, result) 
         return jsonify(result), 200
 
     except Exception as e:
