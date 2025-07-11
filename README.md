@@ -49,8 +49,7 @@ The server will run at:
 {
   "files": {
     "README.md": "# README content",
-    "src/app.py": "print('Hello')",
-    ...
+    "src/app.py": "print('Hello')"
   }
 }
 ```
